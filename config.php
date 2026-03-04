@@ -15,6 +15,6 @@ spl_autoload_register(function ($class_name) {
 });
 
 Dotenv::mount(__DIR__.DIRECTORY_SEPARATOR.'.env');
-//dd(getenv('JADLOG_API_KEY'));
+
 
 ?>

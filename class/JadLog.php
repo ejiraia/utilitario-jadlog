@@ -9,14 +9,16 @@ class JadLog{
     public $url_consultar_XML_DACTE = 'https://www.jadlog.com.br/embarcador/api/cte/xml?';
     private $url_pickup = "https://www.jadlog.com.br/embarcador/api/pickup/pudos/";
 
-    private $cnpj = "13951650000164";
+    private $cnpj = "";
 
-    private $key = "eyJ0eXAiOiJKV1QiLCJhbGciOiJIUzI1NiJ9.eyJqdGkiOjEyMjk0NiwiZHQiOiIyMDIzMDMzMCJ9.LtGnGaZXzFRyRAsFZRBes7UU8ex0qdspuzeuAFkdoNw";
+    private $key = "";
 
     public $headers;
 
     public function __construct()
     {
+        $this->key = getenv('JADLOG_API_KEY');
+        $this->cnpj = getenv('CNPJ');
         $this->headers = array(
             'Content-Type: application/json',
             'description: ',

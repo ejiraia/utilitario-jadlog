@@ -1,0 +1,29 @@
+<?php
+
+spl_autoload_register(function ($class_name) {
+    $file = __DIR__.'/class/'.$class_name.'.php';
+    if(file_exists($file)){
+        include_once $file;
+    }
+});
+
+$comando = new BaseCLI($argv);
+
+if($comando->get('--help') || $comando->get('-h')){
+    echo "Comandos disponíveis: \n";
+    foreach($comando->commands() as $key => $value){
+        echo "{$key} : {$value} \n";
+    }
+    exit;
+}
+if($comando->get('serve')){
+    $port = $comando->get('--port') ?? 5000;
+    $dir = $comando->get('-d') ?? getcwd();
+    echo "Servidor rodando na porta {$port} \n";
+    echo "Diretório de start: {$dir} \n";
+    echo "Acesse: http://localhost:{$port} \n";
+    echo "Aperte CTRL + C para parar o servidor \n";
+    exec("php -S localhost:{$port} -t {$dir}");
+}
+
+?>
